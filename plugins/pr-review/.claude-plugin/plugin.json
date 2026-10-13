@@ -1,0 +1,14 @@
+{
+  "name": "pr-review",
+  "version": "1.0.0",
+  "description": "Answer PR review comments with an evidence bar, and give reviewers context before they write one.",
+  "author": {
+    "name": "Arpit Jain"
+  },
+  "keywords": [
+    "code-review",
+    "pull-request",
+    "github",
+    "gh-cli"
+  ]
+}

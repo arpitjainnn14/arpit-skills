@@ -1,0 +1,297 @@
+<title>Document Name</title>
+<style>
+  :root {
+    --paper:      #f2f5f2;
+    --surface:    #ffffff;
+    --plate:      #fbfcfa;
+    --ink:        #16241f;
+    --ink-soft:   #45564f;
+    --ink-faint:  #6d7d76;
+    --rule:       #d3dbd6;
+    --rule-soft:  #e6ebe7;
+    --accent:     #1a5c50;
+    --accent-dim: #d9e6e2;
+    --warn:       #9a5b12;
+    --warn-dim:   #f4e7d4;
+    --crit:       #8c2f22;
+    --crit-dim:   #f3dcd8;
+    --ok:         #2c6a4f;
+
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #101614; --surface: #161e1b; --plate: #e7ebe8;
+      --ink: #e3eae6; --ink-soft: #a9b8b2; --ink-faint: #7e8f88;
+      --rule: #2a3833; --rule-soft: #1e2926;
+      --accent: #5fb09b; --accent-dim: #1c2f2a;
+      --warn: #d69a4e; --warn-dim: #332614;
+      --crit: #dd8577; --crit-dim: #2e1a17; --ok: #6fbf95;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #101614; --surface: #161e1b; --plate: #e7ebe8;
+    --ink: #e3eae6; --ink-soft: #a9b8b2; --ink-faint: #7e8f88;
+    --rule: #2a3833; --rule-soft: #1e2926;
+    --accent: #5fb09b; --accent-dim: #1c2f2a;
+    --warn: #d69a4e; --warn-dim: #332614;
+    --crit: #dd8577; --crit-dim: #2e1a17; --ok: #6fbf95;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--serif); font-size: 17px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .sheet { max-width: 48rem; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; }
+
+  header { border-bottom: 2px solid var(--ink); padding-bottom: 1.1rem; }
+  h1 {
+    font-size: clamp(1.9rem, 5vw, 2.7rem); line-height: 1.08;
+    letter-spacing: -0.02em; margin: 0 0 0.4rem; text-wrap: balance;
+  }
+  .standfirst { margin: 0; color: var(--ink-soft); font-size: 1.05rem; max-width: 38ch; }
+
+  section { margin-top: 2.75rem; }
+  h2 {
+    font-family: var(--sans); font-size: 1rem; font-weight: 650;
+    margin: 0 0 0.9rem; padding-bottom: 0.45rem;
+    border-bottom: 1px solid var(--rule);
+    display: flex; gap: 0.8rem; align-items: baseline;
+  }
+  h2 .no {
+    font-family: var(--mono); font-size: 0.83rem; font-weight: 400;
+    color: var(--accent); font-variant-numeric: tabular-nums;
+  }
+  h3 {
+    font-family: var(--sans); font-size: 0.87rem; font-weight: 650;
+    color: var(--ink); margin: 1.8rem 0 0.55rem;
+    display: flex; gap: 0.75rem; align-items: baseline;
+  }
+  h3 .no {
+    font-family: var(--mono); font-size: 0.78rem; font-weight: 400;
+    color: var(--ink-faint); font-variant-numeric: tabular-nums;
+  }
+  p { margin: 0 0 0.8rem; max-width: 60ch; }
+
+  code {
+    font-family: var(--mono); font-size: 0.85em;
+    background: var(--rule-soft); padding: 0.1em 0.32em;
+    border-radius: 2px; color: var(--ink);
+  }
+
+  .rules {
+    list-style: none; padding: 0; margin: 1rem 0;
+    display: flex; flex-direction: column; gap: 0.45rem; max-width: 60ch;
+  }
+  .rules li { margin: 0; padding-left: 1.5rem; position: relative; font-size: 0.96rem; }
+  .rules li::before {
+    content: ""; position: absolute; left: 0.3rem; top: 0.6em;
+    width: 0.4rem; height: 0.4rem; background: var(--accent);
+  }
+
+  figure {
+    margin: 1.4rem 0; border: 1px solid var(--rule);
+    background: var(--plate); border-radius: 3px; overflow: hidden;
+  }
+  figure .mermaid {
+    margin: 0; padding: 1.4rem 0.75rem; overflow-x: auto;
+    background: transparent; text-align: center;
+  }
+  figcaption {
+    font-family: var(--sans); font-size: 0.71rem;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--ink-faint); padding: 0.55rem 0.9rem;
+    border-top: 1px solid var(--rule); background: var(--surface);
+  }
+  figcaption b { color: var(--accent); font-weight: 650; }
+
+  .tw { overflow-x: auto; margin: 1.1rem 0; }
+  table {
+    border-collapse: collapse; width: 100%;
+    font-family: var(--sans); font-size: 0.84rem; background: var(--surface);
+  }
+  th {
+    text-align: left; font-weight: 650; font-size: 0.69rem;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--ink-faint); border-bottom: 1px solid var(--ink);
+    padding: 0.5rem 0.65rem; white-space: nowrap;
+  }
+  td {
+    padding: 0.55rem 0.65rem; border-bottom: 1px solid var(--rule-soft);
+    vertical-align: top; font-variant-numeric: tabular-nums;
+  }
+  tr:last-child td { border-bottom: none; }
+  td code { background: none; padding: 0; font-size: 0.82rem; }
+
+  .tag { font-family: var(--mono); font-size: 0.71rem; padding: 0.1rem 0.38rem; border-radius: 2px; white-space: nowrap; }
+  .t-ok   { background: var(--accent-dim); color: var(--ok); }
+  .t-warn { background: var(--warn-dim);   color: var(--warn); }
+  .t-crit { background: var(--crit-dim);   color: var(--crit); }
+
+  .note {
+    border-left: 3px solid var(--crit); background: var(--surface);
+    padding: 0.8rem 1rem; margin: 1.2rem 0; max-width: 60ch;
+  }
+  .note .lbl {
+    font-family: var(--sans); font-size: 0.67rem; font-weight: 650;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--crit); display: block; margin-bottom: 0.25rem;
+  }
+  .note p:last-child { margin-bottom: 0; }
+
+  footer {
+    margin-top: 3.5rem; padding-top: 1rem; border-top: 1px solid var(--rule);
+    font-family: var(--sans); font-size: 0.75rem;
+    color: var(--ink-faint); max-width: 60ch;
+  }
+  a { color: var(--accent); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="sheet">
+
+  <header>
+    <h1>Document Name</h1>
+    <p class="standfirst">One sentence. What happens, and for whom.</p>
+  </header>
+
+  <!-- Status note. Delete it only when nothing is unbuilt or unverified. -->
+  <div class="note">
+    <span class="lbl">Status on <!-- date --></span>
+    <p>What is designed but has not run yet. Name each gap.</p>
+    <ul class="rules">
+      <li>Gap one.</li>
+      <li>Gap two.</li>
+    </ul>
+    <p>Read this document as the design, and not as a report of a system in
+    operation.</p>
+  </div>
+
+  <section>
+    <h2><span class="no">1</span> Context</h2>
+
+    <p>The constraint that shapes everything else. State it first.</p>
+
+    <figure>
+      <pre class="mermaid">
+%%{init:{'theme':'base','themeVariables':{'primaryColor':'#dceae5','primaryTextColor':'#16241f','primaryBorderColor':'#1a5c50','lineColor':'#5b6b64','fontFamily':'ui-sans-serif, system-ui, sans-serif','fontSize':'13px'}}}%%
+flowchart LR
+    EXT["Upstream<br/><small>what it is</small>"]
+    SYS["The system<br/><small>ours</small>"]
+    DST["Downstream<br/><small>what it is</small>"]
+    PER["A person<br/><small>role</small>"]
+
+    EXT -- "what moves" --> SYS
+    SYS -- "what moves" --> DST
+    SYS -- "action needed" --> PER
+    PER -- "what they do" --> DST
+
+    classDef ours fill:#1a5c50,stroke:#12433a,color:#ffffff;
+    classDef ext fill:#e8ece9,stroke:#8c9a94,color:#16241f;
+    classDef person fill:#f4e7d4,stroke:#9a5b12,color:#16241f;
+    class SYS ours;
+    class EXT,DST ext;
+    class PER person;
+      </pre>
+      <figcaption><b>Figure 1</b> — C4 level 1. Green is ours.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2><span class="no">2</span> Containers</h2>
+
+    <figure>
+      <pre class="mermaid">
+%%{init:{'theme':'base','themeVariables':{'primaryColor':'#dceae5','primaryTextColor':'#16241f','primaryBorderColor':'#1a5c50','clusterBkg':'#f2f5f2','clusterBorder':'#8c9a94','lineColor':'#5b6b64','fontFamily':'ui-sans-serif, system-ui, sans-serif','fontSize':'13px'}}}%%
+flowchart TB
+    subgraph BOUND_A["Boundary A"]
+        A1["Container<br/><small>what it holds</small>"]
+        A2["Container<br/><small>schedule</small>"]
+    end
+    subgraph BOUND_B["Boundary B"]
+        B1["Container"]
+        B2["Middleware<br/><small>port</small>"]
+    end
+    B1 -- "what moves" --> A1
+    B1 -- "what moves" --> B2
+
+    classDef ours fill:#1a5c50,stroke:#12433a,color:#ffffff;
+    classDef ext fill:#e8ece9,stroke:#8c9a94,color:#16241f;
+    class A1,A2,B1 ours;
+    class B2 ext;
+      </pre>
+      <figcaption><b>Figure 2</b> — C4 level 2. The invariant this picture proves.</figcaption>
+    </figure>
+
+    <ul class="rules">
+      <li>A constraint the reader must respect.</li>
+      <li>The failure that follows if they do not.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="no">3</span> The cycle</h2>
+
+    <figure>
+      <pre class="mermaid">
+%%{init:{'theme':'base','themeVariables':{'primaryColor':'#dceae5','primaryTextColor':'#16241f','primaryBorderColor':'#1a5c50','lineColor':'#5b6b64','actorBkg':'#1a5c50','actorTextColor':'#ffffff','actorLineColor':'#8c9a94','signalColor':'#16241f','signalTextColor':'#16241f','labelBoxBkg':'#dceae5','labelTextColor':'#ffffff','loopTextColor':'#16241f','noteBkgColor':'#f4e7d4','noteTextColor':'#16241f','noteBorderColor':'#9a5b12','fontFamily':'ui-sans-serif, system-ui, sans-serif','fontSize':'13px'}}}%%
+sequenceDiagram
+    autonumber
+    participant A as Ours
+    participant B as Theirs
+
+    A->>B: the request
+    alt it refuses
+        Note over A: do nothing
+    else it accepts
+        B-->>A: the reply
+    end
+      </pre>
+      <figcaption><b>Figure 3</b> — One cycle.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2><span class="no">4</span> States</h2>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>State</th><th>Meaning</th><th>Recovery</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="tag t-ok">SETTLED</span></td>
+            <td>Nothing to do.</td>
+            <td>None</td>
+          </tr>
+          <tr>
+            <td><span class="tag t-warn">REJECTED</span></td>
+            <td>It failed, and you know it failed.</td>
+            <td>Fix the cause, then <code>/retry</code></td>
+          </tr>
+          <tr>
+            <td><span class="tag t-crit">UNKNOWN</span></td>
+            <td>The result is unknown. It can have succeeded.</td>
+            <td>Check the downstream system first</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <span class="lbl">The one irreversible action</span>
+      <p>Name the action nobody can undo, and the exact steps that avoid it.
+      Every document has one. Find it and give it its own callout.</p>
+    </div>
+  </section>
+
+  <footer>
+    Who owns this. Where the code is. What to read next.
+  </footer>
+
+</div>

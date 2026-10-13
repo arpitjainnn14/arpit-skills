@@ -1,0 +1,16 @@
+{
+  "name": "technical-docs",
+  "version": "1.0.0",
+  "description": "Write technical handoffs and design docs that survive contact with a vendor: C4 layout diagrams in Mermaid, and prose in Simplified Technical English.",
+  "author": {
+    "name": "Arpit Jain"
+  },
+  "keywords": [
+    "documentation",
+    "handoff",
+    "c4-model",
+    "mermaid",
+    "simplified-technical-english",
+    "architecture"
+  ]
+}

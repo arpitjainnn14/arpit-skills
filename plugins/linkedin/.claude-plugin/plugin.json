@@ -1,0 +1,16 @@
+{
+  "name": "linkedin",
+  "version": "1.0.0",
+  "description": "Audit, score and rewrite a LinkedIn profile so recruiter search and AI sourcing tools find it, and track the score across runs.",
+  "author": {
+    "name": "Arpit Jain"
+  },
+  "keywords": [
+    "linkedin",
+    "profile",
+    "recruiting",
+    "job-search",
+    "claude-in-chrome",
+    "audit"
+  ]
+}

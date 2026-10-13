@@ -1,0 +1,39 @@
+{
+  "name": "claude-skills",
+  "owner": {
+    "name": "Arpit Jain"
+  },
+  "metadata": {
+    "description": "Claude Code skills.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "pr-review",
+      "description": "Answer PR review comments with an evidence bar, so a confident-but-wrong review does not become a code change \u2014 and hand reviewers the context they need before they write one.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Arpit Jain"
+      },
+      "source": "./plugins/pr-review"
+    },
+    {
+      "name": "technical-docs",
+      "description": "Write technical handoffs and design docs that survive contact with a vendor: C4 layout diagrams in Mermaid, and prose in Simplified Technical English.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Arpit Jain"
+      },
+      "source": "./plugins/technical-docs"
+    },
+    {
+      "name": "linkedin",
+      "description": "Audit, score and rewrite a LinkedIn profile so recruiter search and AI sourcing tools find it, and track the score across runs.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Arpit Jain"
+      },
+      "source": "./plugins/linkedin"
+    }
+  ]
+}

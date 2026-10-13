@@ -1,0 +1,5 @@
+.DS_Store
+*.log
+
+# skill-creator eval workspaces
+*-workspace/

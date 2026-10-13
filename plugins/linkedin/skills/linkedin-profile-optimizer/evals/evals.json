@@ -1,0 +1,119 @@
+{
+  "skill_name": "linkedin-profile-optimizer",
+  "evals": [
+    {
+      "id": 1,
+      "name": "full-audit-backend-engineer",
+      "prompt": "hey, im logged into linkedin in chrome. can you go through my whole profile and optimise everything - headline, about, experience, skills, banner, all of it? I want senior backend engineer roles, bangalore or remote. my resume is at evals/files/rohan/resume.md and these are 2 JDs I like: evals/files/rohan/jd1.txt and evals/files/rohan/jd2.txt. I want recruiters to actually find me",
+      "expected_output": "Run folder with targets.json (keywords from JDs), scorecard.json (honest low score ~25-40), drafts.md with copy-paste headline/About/experience/skills/settings/recommendation requests within char limits and no fabricated metrics, projected.json higher, banner-brief.md, report.html.",
+      "files": [
+        "evals/files/rohan/profile.json",
+        "evals/files/rohan/resume.md",
+        "evals/files/rohan/jd1.txt",
+        "evals/files/rohan/jd2.txt"
+      ],
+      "assertions": [
+        "Gives an overall numeric score out of 100 for the current profile",
+        "Gives a projected score for the drafted profile, higher than the current score",
+        "Drafted headline is at most 220 characters and contains the literal string 'Senior Backend Engineer', while no drafted Experience title claims 'Senior'",
+        "Drafted About is at most 2600 characters and its first 300 characters contain at least 3 of these as whole words: Java, Go, Kafka, Kubernetes, PostgreSQL, Redis, AWS",
+        "Every drafted experience description is at most 2000 characters, and the Infotech (oldest) description has at most one [placeholder]",
+        "No fabricated facts: every metric/number in drafted profile text appears in the resume or profile, or is an explicit placeholder",
+        "Flags that the current About's '5 years' contradicts the ~6 years of listed roles",
+        "Recommends Open to Work set to recruiters-only with specific target titles and Remote as a location",
+        "Recommends replacing the auto-generated URL slug (rohan-mehta-7b3a91204) with a custom one",
+        "Builds an actual banner design (design artboards/HTML or a rendered image) at 1584x396 with text kept out of the bottom-left photo zone — not only a written brief",
+        "Drafts at least one ready-to-send recommendation request addressed to a specific relationship (e.g. his Zipcart manager)",
+        "Asks or notes whether employer figures (e.g. 2M orders, ₹40 Cr/month) are OK to make public",
+        "Recommends turning off 'share profile updates with network' before editing",
+        "Saves a machine-readable scorecard (JSON) with per-criterion scores so a future run can be compared",
+        "The final skills list is internally consistent: every Top-5 skill is in the final list and the stated count matches the list"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "reaudit-progress-check",
+      "prompt": "I made some of the linkedin changes you suggested last month, can you re-check my profile and tell me how much it improved and what's still left? audits are in evals/files/rohan-reaudit/linkedin-audits",
+      "expected_output": "New dated run reusing targets.json; scorecard compared to 2026-09-10; identifies applied (headline, About, Top skills, OTW, URL) vs skipped (experience bullets, banner, Featured, full skills list); judged scores for unchanged text kept consistent; report.html with both runs; drafts only for what still loses points.",
+      "files": [
+        "evals/files/rohan-reaudit/profile-now.json",
+        "evals/files/rohan-reaudit/linkedin-audits/2026-09-10/"
+      ],
+      "assertions": [
+        "States the previous score and the new score with the numeric improvement",
+        "Correctly identifies at least 3 of the 4 applied changes: headline, About, Open to Work, custom URL",
+        "Correctly identifies at least 2 of the 3 skipped changes: experience descriptions, banner, Featured",
+        "The new scorecard was produced by the rubric scripts with a targets_hash equal to the previous run's (not hand-scored, not null)",
+        "Flags that the live headline claims 'AWS Certified' while no AWS certification is listed",
+        "Produces a comparison view (HTML report or table) covering both the 2026-09-10 run and the new run",
+        "Mentions the performance change (profile views 38→96 or search appearances 9→41)",
+        "Leaves the previous run folder (2026-09-10) byte-identical to the fixture",
+        "Remaining-work list puts experience bullets first and does not redraft the already-applied headline from scratch",
+        "Does not inflate the Zipcart Experience title to 'Senior …'",
+        "Provides fresh ready-to-paste drafts for the remaining items, each with a character count accurate to ±2"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "quick-score-fresher",
+      "prompt": "rate my linkedin out of 100 honestly and tell me the top things to fix. I'm a 2025 grad looking for data analyst jobs in Pune or remote",
+      "expected_output": "Quick-score flow: targets.json with guessed keywords flagged as guesses, scorecard.json, report.html, top 5 fixes with point values (OTW titles empty, public OTW frame, banner cliché, single role, quantification), offer to draft. No full drafts.md required.",
+      "files": [
+        "evals/files/meera/profile.json"
+      ],
+      "assertions": [
+        "Gives a single overall score out of 100",
+        "The score is between 40 and 70 inclusive",
+        "Flags that Open to Work has no job titles set",
+        "Flags that Open to Work locations lack Remote although the user wants remote roles",
+        "Flags the ~16-month gap since the internship ended (June 2025) and suggests a concrete way to cover it",
+        "The cliché banner ('Data is the new oil' / stock laptop) either costs points in the score or appears in the top fixes",
+        "Every top fix has a point value; goal blockers (fixes that hide her from the search she described) may lead, and the remaining fixes are in non-increasing order of points",
+        "Notes that keywords were estimated without target job postings, or asks for 2+ postings",
+        "Includes at least one ready-to-paste headline",
+        "The Open to Work / Remote fix appears among the first 3 fixes"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "strong-profile-no-inflation",
+      "prompt": "can you audit my linkedin? I think it's decent but I want to move up to group PM roles. be brutally honest, don't just tell me it's great",
+      "expected_output": "High but honest score (>=80), few specific fixes (mainly: Group/Principal PM title & leadership-scope signals), no fabricated metrics, no recommendations for things already done.",
+      "files": [
+        "evals/files/priya/profile.json"
+      ],
+      "assertions": [
+        "Gives an overall score out of 100 that is at least 80",
+        "Identifies that 'Group Product Manager' (the target title) is not in the headline and proposes a headline containing it honestly (e.g. 'Senior PM … | Open to Group PM roles')",
+        "Identifies leadership/scope signals for Group PM (managing PMs, multi-squad/portfolio ownership) as the main gap, or asks about them",
+        "Does not recommend things the profile already has as fixes: photo, custom URL, custom banner, Open to Work, Featured items, recommendations",
+        "No fabricated metrics: every number in suggested text appears in the profile or is an explicit placeholder",
+        "Gives at most 6 prioritised fixes, each specific to this profile (no generic advice)",
+        "Raises the discretion conflict (public 'OPEN TO' text vs recruiters-only Open to Work) and gives a discreet headline/About option"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "career-switcher-confidential",
+      "prompt": "I'm a maths teacher trying to switch into UX design. my notes are in evals/files/karan/notes.md. please fix up my linkedin so recruiters for junior UX roles actually find me. I don't want my school to find out I'm looking though",
+      "expected_output": "Honest switcher positioning: target title in headline framed as transition, teacher title unchanged, recruiters-only OTW, profile-update sharing off, UX cert + case studies added with only real facts, photo flagged, transferable skills, scores before/projected, banner.",
+      "files": [
+        "evals/files/karan/profile.json",
+        "evals/files/karan/notes.md"
+      ],
+      "assertions": [
+        "Drafted headline contains a literal target title ('UX Designer' or 'UX Researcher') and keeps his real current role (teacher) or a transition marker visible, so UX is not presented as his only current job",
+        "The Delhi Public School experience title stays 'Mathematics Teacher' (no UX title invented for it)",
+        "Recommends Open to Work visible to recruiters only (not the public frame), citing the confidentiality concern",
+        "Recommends turning off 'share profile updates with network' before editing",
+        "Uses only real case-study facts (12 interviews, 8 parents, 5/8→8/8, ~600 parents, 140→210) and does not credit the 140→210 rise solely to the redesign",
+        "Adds the Google UX Design certificate to Licenses & certifications with its credential link",
+        "Adds the portfolio (karanmalhotra.design) and case studies to Featured and/or Projects",
+        "Flags the missing profile photo",
+        "Translates teaching experience into transferable UX skills (e.g. surveys of ~200 students, explaining complex ideas, designing assessments)",
+        "Gives a current score and a projected score out of 100",
+        "The final chat reply plainly tells him he has no profile photo"
+      ]
+    }
+  ]
+}
