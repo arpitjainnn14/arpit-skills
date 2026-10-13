@@ -7,6 +7,7 @@ add more under `plugins/` over time.
 |---|---|---|
 | [`pr-review`](plugins/pr-review) | `pr-review-defense`, `review-this-pr` | Answering PR review comments without caving to ones that are wrong, and handing reviewers real context before they write a generic review. |
 | [`technical-docs`](plugins/technical-docs) | `technical-doc` | Handoffs and design docs as published artifacts: C4 diagrams drawn with Mermaid `flowchart` (never the C4 DSL), prose in Simplified Technical English. |
+| [`linkedin`](plugins/linkedin) | `linkedin-profile-optimizer` | Auditing a LinkedIn profile against a fixed 100-point rubric, drafting rewrites so recruiter search and AI sourcing tools find it, and tracking the score across runs. Reads the profile, never writes to it. |
 
 ## Install
 
@@ -14,6 +15,7 @@ add more under `plugins/` over time.
 /plugin marketplace add arpitjainnn14/claude-skills
 /plugin install pr-review@claude-skills
 /plugin install technical-docs@claude-skills
+/plugin install linkedin@claude-skills
 ```
 
 Or point at a local clone while iterating:
